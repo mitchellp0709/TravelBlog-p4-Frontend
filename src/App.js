@@ -1,23 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header";
+import AllPosts from "./pages/AllPosts";
+import Form from "./pages/Form";
+import SinglePost from "./pages/SinglePost";
+import { useState, useEffect } from 'react'
+import { useParams, Routes, Route, useNavigate, Link } from 'react-router-dom'
 
 function App() {
+  ////////////////////////////////////
+  // Hooks & State & misc Variables
+  ////////////////////////////////////
+
+  const navigate = useNavigate();
+
+  const url = "http://localhost:8000/locations";
+
+  const [posts, setPosts] = useState([]);
+
+  ////////////////////////////////////
+  // Functions
+  ////////////////////////////////////
+
+  const getPosts = async () => {
+    const response = await fetch(url)
+    const data = await response.json()
+    setPosts(data)
+  }
+
+  useEffect(() => {getPosts() },[])
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Routes>
+        <Route path="/" element={<AllPosts posts={posts} />} />
+        <Route path="/post/:id" element={<SinglePost posts={posts} />} />
+        <Route path="/edit" element={<Form />} />
+        <Route path="/new" element={<Form />} />
+      </Routes>
     </div>
   );
 }
