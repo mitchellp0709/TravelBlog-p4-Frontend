@@ -12,7 +12,7 @@ function App() {
 
   const navigate = useNavigate();
 
-  const url = "http://localhost:8000/locations";
+  const url = "https://travel-blog-p4.herokuapp.com/locations/";
 
   const [posts, setPosts] = useState([]);
 
@@ -21,6 +21,7 @@ function App() {
     description: "",
     image:""
   }
+  const [targetPost, setTargetPost] = useState(nullPost);
 
   ////////////////////////////////////
   // Functions
@@ -43,6 +44,30 @@ function App() {
     getPosts()
   }
 
+  const getTargetPost = (post) => {
+    setTargetPost(post);
+    navigate("/edit")
+  }
+
+  const updatePost = async (post) => {
+    await fetch(url + post.id + "/", {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(post)
+    })
+    getPosts()
+  }
+
+  const removePost = async(post) => {
+    await fetch(url + post.id, {
+      method:"delete",
+    })
+    getPosts()
+    navigate("/")
+  }
+
   useEffect(() => {getPosts() },[])
 
 
@@ -51,8 +76,16 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<AllPosts posts={posts} />} />
-        <Route path="/post/:id" element={<SinglePost posts={posts} />} />
-        <Route path="/edit" element={<Form />} />
+        <Route path="/post/:id" element={<SinglePost
+          posts={posts}
+          edit={getTargetPost}
+          removePost={removePost}
+        />} />
+        <Route path="/edit" element={<Form
+          initialPost={targetPost}
+          handleSubmit={updatePost}
+          buttonLabel="Edit Post"
+        />} />
         <Route path="/new" element={<Form
           initialPost={nullPost}
           handleSubmit={addPost}
