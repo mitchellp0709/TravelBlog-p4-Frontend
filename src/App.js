@@ -4,6 +4,7 @@ import Form from "./pages/Form";
 import SinglePost from "./pages/SinglePost";
 import { useState, useEffect } from 'react'
 import { useParams, Routes, Route, useNavigate, Link } from 'react-router-dom'
+import './styles.scss'
 
 function App() {
   ////////////////////////////////////
