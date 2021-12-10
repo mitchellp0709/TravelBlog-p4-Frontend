@@ -34,7 +34,7 @@ function App() {
   ////////////////////////////////////
 
   const getPosts = async () => {
-    const response = await fetch(`${url}auth/allposts`)
+    const response = await fetch(`${url}posts/allposts`)
     const data = await response.json()
     setPosts(data)
   }
