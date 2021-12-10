@@ -23,30 +23,32 @@ const Form = ({ initialPost, handleSubmit, buttonLabel }) => {
 
   
   return (
-    <form onSubmit={handleSubmission}>
-      <input
-        type="text"
-        onChange={handleChange}
-        name="name"
-        value={formData.name}
-        placeholder={initialPost.name}
-      />
-      <input
-        type="text"
-        onChange={handleChange}
-        name="description"
-        value={formData.description}
-        placeholder={initialPost.description}
-      />
-      <input
-        type="text"
-        onChange={handleChange}
-        name="image"
-        value={formData.image}
-        placeholder={initialPost.image}
-      />
-      <input type="submit" value={buttonLabel}/>
-    </form>
+    <div className="form-div">
+      <form onSubmit={handleSubmission}>
+        <input
+          type="text"
+          onChange={handleChange}
+          name="name"
+          value={formData.name}
+          placeholder="Name"
+        />
+        <input
+          type="text"
+          onChange={handleChange}
+          name="description"
+          value={formData.description}
+          placeholder="Description"
+        />
+        <input
+          type="text"
+          onChange={handleChange}
+          name="image"
+          value={formData.image}
+          placeholder="Image Link"
+        />
+        <input type="submit" value={buttonLabel} />
+      </form>
+    </div>
   );
 };
 
