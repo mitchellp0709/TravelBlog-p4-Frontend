@@ -8,9 +8,9 @@ const AllPosts = (props) => {
   return (
     <div className="container">
       <Carousel>
-        <CarouselItem>Item 1</CarouselItem>
-        <CarouselItem>Item 2</CarouselItem>
-        <CarouselItem>Item 3</CarouselItem>
+        {props.posts.map((pic) => {
+          return <CarouselItem><img src={pic.image}/></CarouselItem>
+        })}
       </Carousel>
 
       {props.posts.map((post) => {

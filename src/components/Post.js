@@ -1,8 +1,11 @@
-import { Link } from "react-router-dom"
+import { Link,useNavigate } from "react-router-dom"
 
 const Post = (props) => {
 
-  
+  const navigate=useNavigate()
+  const nav = () => {
+    navigate(`/post/${props.post.id}`);
+  }
 
 
   return (
@@ -11,8 +14,8 @@ const Post = (props) => {
         <h1>{props.post.name}</h1>
       </Link>
       
-        <img src={props.post.image} alt="image of location" />
-     
+      <img src={props.post.image} alt="image of location" onClick={nav} className="nav"/>
+      
       <p>{props.post.description}</p>
     </div>
   );

@@ -5,8 +5,8 @@ import SinglePost from "./pages/SinglePost";
 import { useState, useEffect } from 'react'
 import { useParams, Routes, Route, useNavigate, Link } from 'react-router-dom'
 import './styles.scss'
-import Signup from "./pages/Signup";
-import Login from "./pages/Login";
+
+
 
 function App() {
   
@@ -120,8 +120,7 @@ function App() {
             />
           }
         />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login setUser={setUser} url={url}/>} />
+       
       </Routes>
     </div>
   );
