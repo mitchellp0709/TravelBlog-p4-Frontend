@@ -16,7 +16,7 @@ function App() {
 
   const navigate = useNavigate();
   //const url = "http://localhost:8000/";
-  const url = "https://travel-blog-p4.herokuapp.com/";
+  const url = "https://travel-blog-backend-2.herokuapp.com/";
 
   const [posts, setPosts] = useState([]);
 
@@ -27,6 +27,10 @@ function App() {
   }
   const [targetPost, setTargetPost] = useState(nullPost);
 
+  const [user, setUser] = useState()
+  
+
+
   
 
   ////////////////////////////////////
@@ -34,10 +38,12 @@ function App() {
   ////////////////////////////////////
 
   const getPosts = async () => {
-    const response = await fetch(`${url}posts/allposts`)
+    const response = await fetch(`${url}posts`)
     const data = await response.json()
     setPosts(data)
+    //getRealPosts(data)
   }
+
 
   const addPost = async (newPost) => {
     await fetch(`${url}posts`, {
@@ -115,7 +121,7 @@ function App() {
           }
         />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login setUser={setUser} url={url}/>} />
       </Routes>
     </div>
   );

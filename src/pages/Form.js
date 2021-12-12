@@ -46,6 +46,7 @@ const Form = ({ initialPost, handleSubmit, buttonLabel }) => {
           value={formData.image}
           placeholder="Image Link"
         />
+        
         <input type="submit" value={buttonLabel} />
       </form>
     </div>

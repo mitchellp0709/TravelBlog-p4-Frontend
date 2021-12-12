@@ -10,6 +10,7 @@ const Header = (props) => {
       method:"post"
     })
     navigate("/login")
+    localStorage.removeItem("id")
   }
 
 

@@ -5,6 +5,7 @@ const Login = (props) => {
   const navigate = useNavigate();
   const url = "https://travel-blog-p4.herokuapp.com/auth/";
   //const url = "http://localhost:8000/auth/";
+  
   //form state
   const blankForm = {
     username: "",
@@ -16,10 +17,10 @@ const Login = (props) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    fetch(url + "login", {
+    const response = await fetch(url + "login", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -29,6 +30,9 @@ const Login = (props) => {
         password: formData.password,
       }),
     });
+    const data = await response.json()
+    console.log(data)
+    localStorage.setItem("id",JSON.stringify(data.id))
     navigate("/");
   };
 
